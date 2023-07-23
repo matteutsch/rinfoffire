@@ -1,0 +1,19 @@
+.player {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  background-color: blueviolet;
+  border-radius: 50px 0 0 50px;
+  border: 2px solid black;
+
+  span {
+    margin-left: 16px;
+    font-size: 32px;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+}
