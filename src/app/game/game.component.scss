@@ -48,6 +48,14 @@
   bottom: 32px;
 }
 
+.pin-bottom {
+  position: absolute;
+  bottom: 32px;
+  left: 100px;
+  right: 100px;
+  color: white;
+}
+
 @keyframes pick-card-animation {
   0% {
     transform: scale(1);
