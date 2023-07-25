@@ -1,7 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Game } from 'src/models/game';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogAddPlayerComponent } from '../dialog-add-player/dialog-add-player.component';
+import {
+  Firestore,
+  collection,
+  collectionData,
+  addDoc,
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-game',
@@ -12,15 +20,41 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   currentCard: string = '';
   game: Game = new Game();
-  constructor(public dialog: MatDialog) {}
+  firestore: Firestore = inject(Firestore);
+  aCollection = collection(this.firestore, 'games');
+  items$!: Observable<any>;
+
+  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
+    this.items$ = collectionData(this.aCollection);
+  }
 
   ngOnInit() {
     this.newGame();
+    this.route.params.subscribe((params) => {
+      console.log(params);
+    });
+    this.items$.subscribe((games) => {
+      console.log('game update', games);
+    });
+
+    this.addGameToFirestore();
   }
 
   newGame() {
     this.game = new Game();
-    console.log(this.game);
+  }
+
+  addGameToFirestore() {
+    const jsonObject = this.game.toJson();
+
+    // Use the 'addDoc' function to add the JSON object to the 'games' collection
+    addDoc(collection(this.firestore, 'games'), jsonObject)
+      .then((docRef) => {
+        console.log('Document written with ID: ', docRef.id);
+      })
+      .catch((error) => {
+        console.error('Error adding document: ', error);
+      });
   }
 
   takeCard() {
