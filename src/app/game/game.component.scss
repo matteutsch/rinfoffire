@@ -2,7 +2,7 @@
   width: 100vw;
   height: 100vh;
   max-width: 100%;
-  background-image: url("~src/assets/img/board1.jpg");
+  background-image: url("~src/assets/img/board.jpg");
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,6 +41,7 @@
   position: absolute;
   right: 0;
   top: 0;
+  z-index: 1;
 }
 .btn-add {
   position: absolute;
@@ -54,6 +55,23 @@
   left: 100px;
   right: 100px;
   color: white;
+  @media (max-width: 720px) {
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
+
+.scrollable-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  overflow-y: hidden;
+  overflow-x: auto;
+  gap: 8px;
 }
 
 @keyframes pick-card-animation {

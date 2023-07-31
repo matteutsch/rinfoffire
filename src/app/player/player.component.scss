@@ -2,13 +2,14 @@
   width: 300px;
   display: flex;
   align-items: center;
-  background-color: rgba(50, 50, 50, 0.6);
+  background-color: #424242;
   border-radius: 50px 0 0 50px;
   border: 2px solid black;
 
   span {
     margin-left: 16px;
     font-size: 32px;
+    color: white;
   }
   img {
     width: 60px;
@@ -19,5 +20,5 @@
 }
 
 .player-active {
-  background-color: rgba(255, 166, 0) !important;
+  background-color: #c2185b !important;
 }

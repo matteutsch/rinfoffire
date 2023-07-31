@@ -23,6 +23,9 @@
   img {
     width: 40vw;
     height: auto;
+    @media (max-width: 960px) {
+      width: 70vw;
+    }
 
     &:hover {
       filter: brightness(1.25);
